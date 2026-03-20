@@ -1,11 +1,8 @@
 ---
 name: design-review
 description: テックリードの観点で設計書をレビューし、アーキテクチャ整合性・過剰設計・スコープ逸脱を確認する
-user_invocable: false
-arguments:
-  - name: design
-    description: レビュー対象の設計書ファイルパス
-    required: true
+argument-hint: "[レビュー対象の設計書ファイルパス]"
+user-invocable: false
 ---
 
 レビュー対象: $ARGUMENTS

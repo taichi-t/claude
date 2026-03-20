@@ -1,11 +1,8 @@
 ---
 name: build
 description: 仕様書に基づいて機能を実装し、コードレビュー・PR説明文の作成まで行う
-user_invocable: true
-arguments:
-  - name: feature
-    description: 機能・ストーリーの説明またはファイルパス
-    required: false
+argument-hint: "[機能・ストーリーの説明 or .claude/temp/specs/機能名.md]"
+user-invocable: true
 ---
 
 機能・ストーリー: $ARGUMENTS

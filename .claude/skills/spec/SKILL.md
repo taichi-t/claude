@@ -1,11 +1,8 @@
 ---
 name: spec
 description: 仕様策定・ストーリー分割を行い、仕様書を作成する
-user_invocable: true
-arguments:
-  - name: feature
-    description: 実装したい機能の説明またはファイルパス
-    required: false
+argument-hint: "[機能の説明 or .claude/epics/epic_〇〇.md]"
+user-invocable: true
 ---
 
 ユーザーが実装したい機能: $ARGUMENTS

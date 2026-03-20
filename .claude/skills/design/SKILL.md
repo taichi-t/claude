@@ -1,11 +1,8 @@
 ---
 name: design
 description: 技術詳細設計を行い、設計書を作成する
-user_invocable: true
-arguments:
-  - name: target
-    description: 設計対象の説明またはファイルパス
-    required: false
+argument-hint: "[設計対象の説明 or .claude/temp/specs/機能名.md]"
+user-invocable: true
 ---
 
 設計対象: $ARGUMENTS

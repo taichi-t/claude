@@ -1,11 +1,8 @@
 ---
 name: spec-review
 description: PMの観点で仕様書をレビューし、ユースケースの網羅性・整合性・ユーザー価値を確認する
-user_invocable: false
-arguments:
-  - name: spec
-    description: レビュー対象の仕様書ファイルパス
-    required: true
+argument-hint: "[レビュー対象の仕様書ファイルパス]"
+user-invocable: false
 ---
 
 レビュー対象: $ARGUMENTS

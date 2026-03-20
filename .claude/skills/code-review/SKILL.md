@@ -1,11 +1,8 @@
 ---
 name: code-review
 description: コードレビューを実施し、問題点を指摘・修正案を提示する
-user_invocable: true
-arguments:
-  - name: target
-    description: レビュー対象のファイルパス（省略時はgit diffを対象とする）
-    required: false
+argument-hint: "[レビュー対象のファイルパス（省略時はgit diffを対象とする）]"
+user-invocable: true
 ---
 
 レビュー対象: $ARGUMENTS

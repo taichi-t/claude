@@ -1,11 +1,8 @@
 ---
 name: spec-all
 description: プロダクト・機能全体の仕様策定を行い、エピック分割・依存関係・並列可否を整理する
-user_invocable: true
-arguments:
-  - name: product
-    description: プロダクト・機能全体の説明
-    required: false
+argument-hint: "[プロダクト・機能全体の説明]"
+user-invocable: true
 ---
 
 ユーザーが作りたいプロダクト・機能: $ARGUMENTS

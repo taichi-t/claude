@@ -1,11 +1,8 @@
 ---
 name: gather-context
 description: 引数を解析し、URL・ファイルパス・説明文から情報を収集する共通スキル
-user_invocable: false
-arguments:
-  - name: input
-    description: ユーザーから渡された引数（URL、ファイルパス、説明文など）
-    required: false
+argument-hint: "[URL, ファイルパス, 説明文など]"
+user-invocable: false
 ---
 
 $ARGUMENTS を解析し、コンテキストを収集する。

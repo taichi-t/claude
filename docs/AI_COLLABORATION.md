@@ -18,21 +18,19 @@ Claude Codeの設定設計における原則と構成パターン。複数プロ
 
 ```mermaid
 flowchart TD
-    Q{いつ必要?}
-    Q -->|常に| CLAUDE["CLAUDE.md\n方針・禁止事項・ナビゲーション"]
-    Q -->|ファイル種別に依存| Rules[".claude/rules/\ndocs/へのimportのみ"]
-    Q -->|作業フロー時のみ| Skills[".claude/skills/\n手順・ワークフロー"]
-    Q -->|探索・調査| Agents[".claude/agents/\n独立したワーカー"]
+    Start["書きたいことがある"] --> Q1{必ず実行させたい?}
+    Q1 -->|Yes| Q1a{技術的に強制できる?}
+    Q1a -->|Yes| Settings[".claude/settings.json\n権限・許可リスト"]
+    Q1a -->|No| Hooks[".claude/hooks/\nシェルスクリプト"]
 
-    E{必ず実行?}
-    E -->|Yes| Hooks[".claude/hooks/\nライフサイクルイベント"]
-    E -->|No| CLAUDE
+    Q1 -->|No| Q2{いつ必要?}
+    Q2 -->|常に| CLAUDE["CLAUDE.md\n方針・禁止事項・ナビゲーション"]
+    Q2 -->|特定ファイル編集時| Rules[".claude/rules/\ndocs/へのimportのみ"]
+    Q2 -->|特定の作業フロー時| Q3{コンテキスト分離が必要?}
+    Q3 -->|No| Skills[".claude/skills/\n手順・ワークフロー"]
+    Q3 -->|Yes| Agents[".claude/agents/\n独立したワーカー"]
 
-    P{技術的に強制?}
-    P -->|Yes| Settings[".claude/settings.json\n権限・許可リスト"]
-
-    D["docs/\n人間もAIも読む唯一の真実"]
-    Rules -->|参照| D
+    Rules -->|参照| Docs["docs/\n人間もAIも読む唯一の真実"]
 ```
 
 ### rules はアダプター層

@@ -47,31 +47,6 @@ paths:
 
 ---
 
-## skills vs agents
-
-```mermaid
-flowchart TD
-    Task{"この作業は…"} -->|手順に従ってほしい| Skill
-    Task -->|独立して処理してほしい| Agent
-
-    subgraph Skill[".claude/skills/"]
-        direction LR
-        SK1["ユーザーが /skill で呼び出し"]
-        SK2["メインのコンテキストを共有"]
-    end
-
-    subgraph Agent[".claude/agents/"]
-        direction LR
-        AG1["Claudeが自動で委譲"]
-        AG2["独立コンテキスト・モデル指定可"]
-    end
-
-    Skill -->|結果がそのまま会話に残る| Main["メイン会話"]
-    Agent -->|サマリーだけ返る| Main
-```
-
----
-
 ## モデルとトークンの最適化
 
 ```mermaid

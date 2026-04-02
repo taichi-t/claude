@@ -70,9 +70,50 @@ CLAUDE.md
 .claude/skills/
   └── 特定の作業をどう進めるか（手順）
 
+.claude/settings.json
+  └── 権限・環境変数・許可リストなど技術的に強制する設定
+
+.claude/hooks/
+  └── 必ず実行させたいアクション（シェルスクリプト）
+
 docs/
   └── 人間もAIも読むプロジェクトの情報（唯一の真実）
 ```
+
+### `settings.json` と `hooks/` の使い分け
+
+`.claude/settings.json` はClaude Codeクライアントが強制する設定。Claudeの判断に依存しない。
+
+```jsonc
+// .claude/settings.json
+{
+  "permissions": {
+    "allow": ["Bash(npm test)", "Bash(git *)"],
+    "deny": ["Bash(rm -rf *)"]
+  }
+}
+```
+
+`hooks/` はClaude Codeのライフサイクルイベントに紐づくシェルスクリプト。
+
+| イベント | 用途例 |
+|---------|--------|
+| `PreToolUse` | ツール実行前のバリデーション・ブロック |
+| `PostToolUse` | 実行後の通知・ログ |
+| `Stop` | 作業完了時の通知・後処理 |
+| `Notification` | 承認待ちなどの割り込み通知 |
+
+```jsonc
+// .claude/settings.json
+{
+  "hooks": {
+    "Stop": [{ "command": ".claude/hooks/notify.sh stop" }],
+    "Notification": [{ "command": ".claude/hooks/notify.sh notification" }]
+  }
+}
+```
+
+**原則：「必ず起きてほしいこと」はhooksに書く。CLAUDE.mdに書いても保証されない。**
 
 ### `.claude/rules/` はアダプター層
 

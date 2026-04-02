@@ -19,9 +19,10 @@ Claude Codeの設定設計における原則と構成パターン。複数プロ
 ```mermaid
 flowchart TD
     Start["書きたいことがある"] --> Q1{必ず実行させたい?}
-    Q1 -->|Yes| Q1a{技術的に強制できる?}
-    Q1a -->|Yes| Settings[".claude/settings.json\n権限・許可リスト"]
-    Q1a -->|No| Hooks[".claude/hooks/\nシェルスクリプト"]
+    Q1 -->|Yes| Q1a{何で強制する?}
+    Q1a -->|Claude Codeの権限制御| Settings[".claude/settings.json\n権限・許可リスト"]
+    Q1a -->|イベント時のスクリプト実行| Hooks[".claude/hooks/\nライフサイクルイベント"]
+    Q1a -->|コード品質・フォーマット| Linter["linter / formatter\nESLint・Prettier・etc"]
 
     Q1 -->|No| Q2{いつ必要?}
     Q2 -->|常に| CLAUDE["CLAUDE.md\n方針・禁止事項・ナビゲーション"]

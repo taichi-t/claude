@@ -51,19 +51,18 @@ paths:
 ## モデルとトークンの最適化
 
 ```mermaid
-flowchart LR
-    Task["タスク"] --> D{種別}
-    D -->|設計・方針決定| Opus
-    D -->|実装・リファクタ| Sonnet["Sonnet\nデフォルト"]
-    D -->|探索・調査| Haiku["Haiku\nagentに割り当て"]
+flowchart TD
+    Start["トークンを節約したい"] --> Q1{どこを最適化する?}
 
-    Opus -->|実装フェーズへ移行| Sonnet
-    note["'/model opusplan' で\n自動切り替え"]
+    Q1 -->|モデル選択| Q2{タスクの複雑さは?}
+    Q2 -->|高：設計・方針決定| Opus["Opus\n/model opusplan で\n実装時にSonnetへ自動切替"]
+    Q2 -->|中：実装・リファクタ| Sonnet["Sonnet\nデフォルト"]
+    Q2 -->|低：探索・調査| Haiku["Haiku\nagentに割り当て"]
+
+    Q1 -->|ツール選択| Q3{CLIで代替できる?}
+    Q3 -->|Yes| CLI["CLI\ngh・aws・gcloud"]
+    Q3 -->|No| MCP["MCP\n使わないものは /mcp で無効化"]
 ```
-
-**MCPよりCLIを優先する**
-
-MCPはツール定義がコンテキストに入る分だけ高コスト。`gh`・`aws` などCLIで代替できる場合はCLIを使う。使わないMCPは `/mcp` で無効化する。
 
 ---
 

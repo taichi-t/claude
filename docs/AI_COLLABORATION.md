@@ -184,6 +184,43 @@ allowed-tools: Read, Grep, Glob
 
 ---
 
+## モデルの使い分け
+
+### `/model opusplan`
+
+計画フェーズだけOpusを使い、実装に移ると自動でSonnetに切り替わる専用モード。
+設計・方針決定はOpus、コーディングはSonnetという使い分けをワンコマンドで実現できる。
+
+```bash
+/model opusplan
+```
+
+### agentsにモデルを指定する
+
+探索・調査など単純作業はagentsにHaikuを割り当てることでコストを抑えられる。
+メイン会話のモデルはそのまま維持される。
+
+```markdown
+---
+name: code-explorer
+description: コードベースの探索・調査を行う
+model: haiku
+allowed-tools: Read, Grep, Glob
+---
+コードベースの探索に特化。調査結果のサマリーのみを返す。
+```
+
+### モデル選定の目安
+
+| タスク | モデル |
+|--------|--------|
+| アーキテクチャ設計・方針決定 | Opus |
+| 実装・リファクタリング | Sonnet（デフォルト） |
+| 探索・検索・調査 | Haiku（agentに割り当て） |
+| シンプルな単純作業 | Haiku |
+
+---
+
 ## アンチパターン
 
 ### 手順をCLAUDE.mdに書く

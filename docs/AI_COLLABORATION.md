@@ -52,26 +52,25 @@ paths:
 ## skills vs agents
 
 ```mermaid
-flowchart LR
-    subgraph skills[".claude/skills/"]
-        S1["ユーザーが /skill で呼び出す"]
-        S2["メイン会話のコンテキストを共有"]
-        S3["手順・ワークフローを記述"]
+flowchart TD
+    Task{"この作業は…"} -->|手順に従ってほしい| Skill
+    Task -->|独立して処理してほしい| Agent
+
+    subgraph Skill[".claude/skills/"]
+        direction LR
+        SK1["ユーザーが /skill で呼び出し"]
+        SK2["メインのコンテキストを共有"]
     end
 
-    subgraph agents[".claude/agents/"]
-        A1["Claudeが自動で委譲"]
-        A2["独立したコンテキスト窓"]
-        A3["モデル・ツールを個別指定可"]
+    subgraph Agent[".claude/agents/"]
+        direction LR
+        AG1["Claudeが自動で委譲"]
+        AG2["独立コンテキスト・モデル指定可"]
     end
+
+    Skill -->|結果がそのまま会話に残る| Main["メイン会話"]
+    Agent -->|サマリーだけ返る| Main
 ```
-
-| | skills | agents |
-|---|---|---|
-| 呼び出し | ユーザーが `/` で明示実行 | Claudeが自動委譲 |
-| コンテキスト | メイン会話と共有 | 完全に独立 |
-| モデル指定 | 不可 | 可能 |
-| 向いている用途 | 手順を教える・フロー制御 | 探索・調査・専門ワーカー |
 
 ---
 

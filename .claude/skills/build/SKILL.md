@@ -25,7 +25,7 @@ user-invocable: true
 
 ## Step 2: 実装方針の作成（プランモード）
 
-プランモードで以下を含む実装方針を作成する。
+プランモードで以下を含む実装方針を作成し、`.claude/temp/plans/機能名.md` に保存する。
 
 - 実装対象の範囲
 - 変更・作成するファイル一覧
@@ -57,7 +57,7 @@ user-invocable: true
 
 ## Step 5: コードレビュー・修正
 
-`/code-review` でコードレビューを実施する。
+`/code-reviews` に仕様書・設計書・実装方針のパスを渡してコードレビューを実施する（例: `/code-reviews .claude/temp/specs/機能名.md .claude/temp/designs/機能名.md .claude/temp/plans/機能名.md`）。存在するファイルのみ渡す。
 指摘事項があれば自律的に修正し、修正が完了したら再度レビューを実施する。
 指摘事項がなくなったら Step 6 に進む。
 

@@ -7,7 +7,7 @@ user-invocable: true
 
 引数: $ARGUMENTS
 
-## Step 1: 引数の解析
+## Step 1: コンテキストの収集
 
 - `.claude/temp/specs/` で始まるパス → 仕様書
 - `.claude/temp/designs/` で始まるパス → 設計書

@@ -1,7 +1,7 @@
 ---
 name: spec-review
 description: PMの観点で仕様書をレビューし、ユースケースの網羅性・整合性・ユーザー価値を確認する
-argument-hint: "[.claude/temp/specs/機能名.md] [レビュー対象の仕様書ファイルパス]"
+argument-hint: "[.claude/epics/epic_[機能名].md] [.claude/temp/specs/機能名.md]"
 user-invocable: true
 ---
 
@@ -10,7 +10,7 @@ user-invocable: true
 ## Step 1: コンテキストの収集
 
 - `docs/PRODUCT_CONTEXT.md` を読む
-- `.claude/epics/` があれば読む
+- 対応するエピックファイル（`.claude/epics/epic_[機能名].md`）があれば読む
 - `.claude/temp/specs/機能名.md` 配下の他の仕様書があれば読む
 
 ## Step 2: レビュー

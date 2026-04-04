@@ -10,7 +10,7 @@ user-invocable: false
 ## Step 1: コンテキストの収集
 
 - `docs/ARCHITECTURE.md` `docs/CODING_GUIDELINES.md` を読む
-- `.claude/epics/` があれば読む
+- 対応するエピックファイル（`.claude/epics/epic_[機能名].md`）があれば読む
 - `.claude/temp/specs/[機能名].md` があれば読む
 
 ## Step 2: レビュー

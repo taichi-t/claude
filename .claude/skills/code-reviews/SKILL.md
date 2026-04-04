@@ -1,7 +1,7 @@
 ---
 name: code-reviews
 description: 仕様適合・規約／アーキテクチャの2観点を並列エージェントでレビューする
-argument-hint: "[.claude/temp/specs/機能名.md] [.claude/temp/designs/機能名.md] [.claude/temp/plans/機能名.md] [レビュー対象ファイル...]"
+argument-hint: "[.claude/epics/epic_[機能名].md] [.claude/temp/specs/機能名.md] [.claude/temp/designs/機能名.md] [.claude/temp/plans/機能名.md] [レビュー対象ファイル...]"
 user-invocable: true
 ---
 
@@ -9,6 +9,7 @@ user-invocable: true
 
 ## Step 1: コンテキストの収集
 
+- `.claude/epics/` で始まるパス → エピック
 - `.claude/temp/specs/` で始まるパス → 仕様書
 - `.claude/temp/designs/` で始まるパス → 設計書
 - `.claude/temp/plans/` で始まるパス → 実装方針
@@ -24,6 +25,7 @@ user-invocable: true
 - 渡された仕様書・設計書・実装方針を読む
 - 渡されていない場合は `.claude/temp/specs/` `.claude/temp/designs/` `.claude/temp/plans/` を glob して関連するものを読む
 - 参照できるドキュメントが何もない場合はユーザーに仕様書・設計書のパスを尋ねる
+- 対応するエピックファイル（`.claude/epics/epic_[機能名].md`）があれば読む
 - レビュー対象コードが仕様・設計の意図を満たしているか確認し、問題点をファイル名・行番号とともに指摘する
 
 ### Agent B — 規約・方針レビュー

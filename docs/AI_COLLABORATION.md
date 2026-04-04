@@ -34,18 +34,6 @@ flowchart TD
     Rules -->|参照| Docs["docs/\n人間もAIも読む唯一の真実"]
 ```
 
-### rules はアダプター層
-
-`docs/` の内容をコピーせず、パスだけ持つ。二重管理を避ける。
-
-```markdown
----
-paths:
-  - "src/**/*.ts"
----
-@docs/CODING_GUIDELINES.md
-```
-
 ---
 
 ## モデルとトークンの最適化
@@ -66,12 +54,19 @@ flowchart TD
 
 ---
 
+## docs/ が唯一の知識の置き場
+
+CLAUDE.md・skills・agents・rules など Claude の設定ファイルにドメイン知識・判断基準を直接書かない。docs/ に書き、設定ファイルからはパスで参照する。
+
+---
+
 ## アンチパターン
 
 - **手順をCLAUDE.mdに書く** → skillsへ
 - **docs/の内容をrulesにコピーする** → importだけにする
 - **何でもCLAUDE.mdに書く** → 長くなるほど重要なルールが無視される
 - **検証できないルールを書く** → 「良いコードを書く」は機能しない
+- **ドメイン知識をClaude設定ファイルに書く** → docs/に書きそこから参照する（二重管理を避ける）
 
 ---
 

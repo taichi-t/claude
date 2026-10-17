@@ -1,0 +1,8 @@
+# VPS での起動例: docker compose up -d --build
+# 既存のリバースプロキシ（Caddy / nginx / Traefik）がある場合は ports を外して同じネットワークに参加させる
+services:
+  quiz:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"

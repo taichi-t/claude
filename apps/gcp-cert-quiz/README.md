@@ -44,3 +44,12 @@ npm run build      # 本番ビルド（dist/）
 ### 出題比率の調整
 
 公式の出題範囲の中で、PCSE はネットワーク境界（セクション 2）と鍵の種類（3.2）、PCA はネットワーク／組織設計／移行とケーススタディを多めに収録している。
+
+## VPS へのデプロイ（Docker）
+
+```bash
+git clone <このリポジトリ> && cd claude/apps/gcp-cert-quiz
+docker compose up -d --build   # 127.0.0.1:8080 で配信
+```
+
+外部公開は既存のリバースプロキシ（Caddy / nginx）で `127.0.0.1:8080` に転送し、HTTPS を終端する。Docker を使わない場合は `npm ci && npm run build` で生成した `dist/` を任意の Web サーバーで配信すればよい（SPA のため `index.html` へのフォールバックを設定する）。
